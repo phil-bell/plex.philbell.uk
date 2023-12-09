@@ -1,0 +1,28 @@
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Seeders</th>
+    <th>Download</th>
+    <th></th>
+  </tr>
+  {% for torrent in torrents %}
+    <tr>
+      <td>{{ torrent.name }}</td>
+      <td>{{ torrent.seeders }}</td>
+      <td>
+        <form hx-post="/add" hx-swap="outerHTML"> 
+          <input type="hidden" name="magnet" value="{{ torrent.magnet }}">
+          <input type="hidden" name="location" value="/mnt/a/tv">
+          <button type="submit">TV</button>
+        </form>
+      </td>
+      <td>
+        <form hx-post="/add" hx-swap="outerHTML"> 
+          <input type="hidden" name="magnet" value="{{ torrent.magnet }}">
+          <input type="hidden" name="location" value="/mnt/c/movies">
+          <button type="submit">Movie</button>
+        </form>
+      </td>
+    </tr>
+  {% endfor %}
+</table>
